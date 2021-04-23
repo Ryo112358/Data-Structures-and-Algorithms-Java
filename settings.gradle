@@ -1,0 +1,5 @@
+include("Algorithms")
+include("Data-Structures")
+include("Playground")
+
+rootProject.name = "Data-Structures-and-Algorithms-Java"
