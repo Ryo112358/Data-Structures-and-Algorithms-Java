@@ -1,4 +1,0 @@
-dependencies {
-    implementation project(":Algorithms")
-    implementation project(":Data-Structures")
-}

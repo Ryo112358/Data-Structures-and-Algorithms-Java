@@ -2,16 +2,14 @@ plugins {
     id("java")
 }
 
-group = projectGroup
-version = projectVersion
+group = "io.coffeelessprogrammer"
+version = "0.1"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation project(":Algorithms")
-    implementation project(":Data-Structures")
     implementation project(":Playground")
 
     compileOnly("org.projectlombok:lombok:1.18.18")
@@ -41,13 +39,9 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.projectlombok:lombok:1.18.18")
-        annotationProcessor("org.projectlombok:lombok:1.18.18")
 
         // ----- Testing -----
 
-        testCompileOnly("org.projectlombok:lombok:1.18.18")
-        testAnnotationProcessor("org.projectlombok:lombok:1.18.18")
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
     }
