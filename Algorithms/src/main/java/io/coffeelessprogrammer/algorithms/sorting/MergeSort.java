@@ -3,10 +3,10 @@ package io.coffeelessprogrammer.algorithms.sorting;
 import io.coffeelessprogrammer.playground.utils.ColorArray;
 import io.coffeelessprogrammer.playground.utils.ConsoleColor;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MergeSort {
+public class MergeSort implements ShowSteps {
 
     public static int[] sort(int[] arr) {
         if(arr.length == 1) return arr;
@@ -47,31 +47,61 @@ public class MergeSort {
 
     // #region ShowSteps
 
-    private static int depth = 0;
+    private int depth;
+    private ArrayList<Integer> levelCounters;
 
-    public static int[] sortShowSteps(int[] arr) {
+    private ConsoleColor preMergeTextColor;
+    private ConsoleColor postMergeTextColor;
+    private ConsoleColor leftArrColor;
+    private ConsoleColor rightArrColor;
+
+    public MergeSort() {
+        this.depth = 0;
+
+        this.preMergeTextColor = ConsoleColor.YELLOW;
+        this.postMergeTextColor = ConsoleColor.GREEN;
+        this.leftArrColor = ConsoleColor.RED;
+        this.rightArrColor = ConsoleColor.CYAN;
+    }
+
+    public int[] showSteps(int[] arr) {
         if(arr.length == 1) return arr;
+
+        // If new array, reset level counters
+        if(depth == 0) {
+            levelCounters = new ArrayList<>();
+        }
 
         final int middleIndex = arr.length/2;
 
-        System.out.printf("\n%sPre-Merge: %s\n",
+        if(levelCounters.size() >= depth+1) {
+            levelCounters.set(depth, levelCounters.get(depth)+1);
+        } else {
+            levelCounters.add(1);
+        }
+
+        System.out.printf("\n%s%sL%d%s Pre-Merge: %s%s\n",
             "\t".repeat(depth),
+            this.preMergeTextColor,
+            depth,
+            depth==0 ? "" : "." + levelCounters.get(depth),
+            ConsoleColor.RESET,
             Arrays.toString(arr)
         );
 
         ++depth;
 
         return mergeShowSteps(
-                sortShowSteps(Arrays.copyOfRange(arr, 0, middleIndex)),
-                sortShowSteps(Arrays.copyOfRange(arr, middleIndex, arr.length))
+                showSteps(Arrays.copyOfRange(arr, 0, middleIndex)),
+                showSteps(Arrays.copyOfRange(arr, middleIndex, arr.length))
         );
     }
 
-    public static int[] mergeShowSteps(int[] left, int[] right) {
+    private int[] mergeShowSteps(int[] left, int[] right) {
         StringBuilder sb = new StringBuilder("[");
 
-        ConsoleColor leftColor = ConsoleColor.RED;
-        ConsoleColor rightColor = ConsoleColor.CYAN;
+        ConsoleColor leftColor = this.leftArrColor;
+        ConsoleColor rightColor = this.rightArrColor;
 
         final int[] merged = new int[left.length + right.length];
 
@@ -89,18 +119,20 @@ public class MergeSort {
         for (mergedIndex=0; leftIndex < left.length && rightIndex < right.length; ++mergedIndex) {
             if(left[leftIndex] <= right[rightIndex]) {
                 merged[mergedIndex] = left[leftIndex];
-                sb.append(leftColor + Integer.toString(left[leftIndex]));
+                sb.append(leftColor).append(left[leftIndex]);
                 ++leftIndex;
             } else {
                 merged[mergedIndex] = right[rightIndex];
-                sb.append(rightColor + Integer.toString(right[rightIndex]));
+                sb.append(rightColor).append(right[rightIndex]);
                 ++rightIndex;
             }
 
             sb.append(", ");
         }
 
-        // System.out.printf("\tMerge In Progress: %s\n", Arrays.toString(merged));
+        String mergeProgress = appendXs(new StringBuilder(sb), mergedIndex, merged.length);
+
+        System.out.printf("%sMerging... %s\n", "\t".repeat(depth), mergeProgress);
 
         if(leftIndex == left.length) {
             System.arraycopy(right, rightIndex, merged, mergedIndex, right.length-rightIndex);
@@ -120,30 +152,29 @@ public class MergeSort {
             }
         }
 
-        sb.append(ConsoleColor.RESET + "]");
+        sb.append(ConsoleColor.RESET).append(']');
 
-        System.out.printf("%sMerge Complete: %s\n\n", "\t".repeat(depth), sb.toString());
+        System.out.printf("\n%s%sL%d%s Merge Complete: %s%s\n\n",
+            "\t".repeat(depth-1),
+            this.postMergeTextColor,
+            depth-1,
+            depth-1==0 ? "" : "." + levelCounters.get(depth-1),
+            ConsoleColor.RESET,
+            sb
+        );
 
         --depth;
 
         return merged;
     }
 
-    private static String highlightShifted(int[] arr, int startIndex, int endIndex) {
-        StringBuilder sb = new StringBuilder("[");
+    private String appendXs(StringBuilder sb, int from, int arrayLength) {
+        sb.append(ConsoleColor.RESET);
 
-        for (int i=0; i < arr.length; ++i) {
-            if(i == startIndex) sb.append(ConsoleColor.YELLOW);
+        for (int i=from; i < arrayLength; ++i) {
+            sb.append('X');
 
-            if(i == startIndex-1) {
-                sb.append('X'); // Insert a placeholder before the shift
-            } else {
-                sb.append(arr[i]);
-            }
-
-            if(i < arr.length-1) sb.append(", ");
-
-            if(i == endIndex) sb.append(ConsoleColor.RESET);
+            if(i < arrayLength-1) sb.append(", ");
         }
 
         return sb.append(']').toString();
