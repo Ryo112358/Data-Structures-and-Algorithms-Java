@@ -4,7 +4,7 @@
 - [ ] Recursion
 - [ ] Dynamic Programming
 - [ ] Comparison Sorting
-  - [ ] Merge Sort
+  - [X] Merge Sort
   - [ ] Quicksort
   - [X] Insertion Sort
 - [ ] Searching

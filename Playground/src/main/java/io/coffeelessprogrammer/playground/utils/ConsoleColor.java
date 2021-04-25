@@ -13,7 +13,7 @@ public enum ConsoleColor {
     BLUE("\033[0;34m"),     // BLUE
     MAGENTA("\033[0;35m"),  // MAGENTA
     CYAN("\033[0;36m"),     // CYAN
-    WHITE("\033[0;37m"),    // WHITE
+    GRAY("\033[0;37m"),    // GRAY
 
     // Bold
     BLACK_BOLD("\033[1;30m"),   // BLACK
@@ -23,7 +23,7 @@ public enum ConsoleColor {
     BLUE_BOLD("\033[1;34m"),    // BLUE
     MAGENTA_BOLD("\033[1;35m"), // MAGENTA
     CYAN_BOLD("\033[1;36m"),    // CYAN
-    WHITE_BOLD("\033[1;37m"),   // WHITE
+    GRAY_BOLD("\033[1;37m"),   // GRAY
 
     // Underline
     BLACK_UNDERLINED("\033[4;30m"),     // BLACK
@@ -33,7 +33,7 @@ public enum ConsoleColor {
     BLUE_UNDERLINED("\033[4;34m"),      // BLUE
     MAGENTA_UNDERLINED("\033[4;35m"),   // MAGENTA
     CYAN_UNDERLINED("\033[4;36m"),      // CYAN
-    WHITE_UNDERLINED("\033[4;37m"),     // WHITE
+    GRAY_UNDERLINED("\033[4;37m"),     // GRAY
 
     // Background
     BLACK_BACKGROUND("\033[40m"),   // BLACK
@@ -43,7 +43,7 @@ public enum ConsoleColor {
     BLUE_BACKGROUND("\033[44m"),    // BLUE
     MAGENTA_BACKGROUND("\033[45m"), // MAGENTA
     CYAN_BACKGROUND("\033[46m"),    // CYAN
-    WHITE_BACKGROUND("\033[47m"),   // WHITE
+    GRAY_BACKGROUND("\033[47m"),   // GRAY
 
     // High Intensity
     BLACK_BRIGHT("\033[0;90m"),     // BLACK
@@ -53,7 +53,7 @@ public enum ConsoleColor {
     BLUE_BRIGHT("\033[0;94m"),      // BLUE
     MAGENTA_BRIGHT("\033[0;95m"),   // MAGENTA
     CYAN_BRIGHT("\033[0;96m"),      // CYAN
-    WHITE_BRIGHT("\033[0;97m"),     // WHITE
+    GRAY_BRIGHT("\033[0;97m"),     // GRAY
 
     // Bold High Intensity
     BLACK_BOLD_BRIGHT("\033[1;90m"),    // BLACK
@@ -63,7 +63,7 @@ public enum ConsoleColor {
     BLUE_BOLD_BRIGHT("\033[1;94m"),     // BLUE
     MAGENTA_BOLD_BRIGHT("\033[1;95m"),  // MAGENTA
     CYAN_BOLD_BRIGHT("\033[1;96m"),     // CYAN
-    WHITE_BOLD_BRIGHT("\033[1;97m"),    // WHITE
+    GRAY_BOLD_BRIGHT("\033[1;97m"),    // GRAY
 
     // High Intensity backgrounds
     BLACK_BACKGROUND_BRIGHT("\033[0;100m"),     // BLACK
@@ -73,7 +73,7 @@ public enum ConsoleColor {
     BLUE_BACKGROUND_BRIGHT("\033[0;104m"),      // BLUE
     MAGENTA_BACKGROUND_BRIGHT("\033[0;105m"),   // MAGENTA
     CYAN_BACKGROUND_BRIGHT("\033[0;106m"),      // CYAN
-    WHITE_BACKGROUND_BRIGHT("\033[0;107m");     // WHITE
+    GRAY_BACKGROUND_BRIGHT("\033[0;107m");     // GRAY
 
     private final String color;
 

@@ -21,6 +21,14 @@ public class ColorArray {
         return sb.append(']').toString();
     }
 
+    public static String highlightRange(int[] arr) {
+        return highlightRange(arr, 0, arr.length-1, ConsoleColor.GREEN);
+    }
+
+    public static String highlightRange(int[] arr, ConsoleColor consoleColor) {
+        return highlightRange(arr, 0, arr.length-1, consoleColor);
+    }
+
     public static String highlightRange(int[] arr, int startIndex, int endIndex) {
         return highlightRange(arr, startIndex, endIndex, ConsoleColor.GREEN);
     }

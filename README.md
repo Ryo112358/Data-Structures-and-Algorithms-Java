@@ -21,7 +21,7 @@
 - [ ] Recursion
 - [ ] Dynamic Programming
 - [ ] Comparison Sorting
-  - [ ] Merge Sort
+  - [X] Merge Sort
   - [ ] Quicksort
 - [ ] Searching
   - [ ] Linear Search
