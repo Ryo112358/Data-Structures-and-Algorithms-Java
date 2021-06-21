@@ -5,6 +5,7 @@ public enum SortName {
     MERGE_SORT("Merge Sort"),
     QUICKSORT("Quicksort");
 
+
     private final String sortName;
 
     SortName(String sortName) { this.sortName = sortName; }

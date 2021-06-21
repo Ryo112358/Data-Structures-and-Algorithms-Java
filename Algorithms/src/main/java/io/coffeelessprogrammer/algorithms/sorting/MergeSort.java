@@ -50,10 +50,10 @@ public class MergeSort implements ShowSteps {
     private int depth;
     private ArrayList<Integer> levelCounters;
 
-    private ConsoleColor preMergeTextColor;
-    private ConsoleColor postMergeTextColor;
-    private ConsoleColor leftArrColor;
-    private ConsoleColor rightArrColor;
+    private final ConsoleColor preMergeTextColor;
+    private final ConsoleColor postMergeTextColor;
+    private final ConsoleColor leftArrColor;
+    private final ConsoleColor rightArrColor;
 
     public MergeSort() {
         this.depth = 0;
@@ -64,7 +64,11 @@ public class MergeSort implements ShowSteps {
         this.rightArrColor = ConsoleColor.CYAN;
     }
 
-    public int[] showSteps(int[] arr) {
+    public void showSteps(int[] arr) {
+        sortShowSteps(arr);
+    }
+
+    private int[] sortShowSteps(int[] arr) {
         if(arr.length == 1) return arr;
 
         // If new array, reset level counters
@@ -92,8 +96,8 @@ public class MergeSort implements ShowSteps {
         ++depth;
 
         return mergeShowSteps(
-                showSteps(Arrays.copyOfRange(arr, 0, middleIndex)),
-                showSteps(Arrays.copyOfRange(arr, middleIndex, arr.length))
+                sortShowSteps(Arrays.copyOfRange(arr, 0, middleIndex)),
+                sortShowSteps(Arrays.copyOfRange(arr, middleIndex, arr.length))
         );
     }
 
@@ -107,9 +111,9 @@ public class MergeSort implements ShowSteps {
 
         System.out.printf("%sLeft: %s\n%sRight: %s\n",
             "\t".repeat(depth),
-            ColorArray.highlightRange(left, leftColor),
+            ColorArray.highlightArray(left, leftColor),
             "\t".repeat(depth),
-            ColorArray.highlightRange(right, rightColor)
+            ColorArray.highlightArray(right, rightColor)
         );
 
         int leftIndex = 0;

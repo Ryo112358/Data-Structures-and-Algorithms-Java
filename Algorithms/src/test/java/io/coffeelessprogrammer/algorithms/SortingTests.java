@@ -2,6 +2,9 @@ package io.coffeelessprogrammer.algorithms;
 
 import io.coffeelessprogrammer.algorithms.sorting.InsertionSort;
 import io.coffeelessprogrammer.algorithms.sorting.MergeSort;
+import io.coffeelessprogrammer.algorithms.sorting.QuickSort;
+
+import static io.coffeelessprogrammer.playground.utils.General.isSorted;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,14 +46,21 @@ class SortingTests {
         assertTrue(isSorted(arr2));
     }
 
-    // #region Helpers
+    @Test
+    final void SortArray_Algo_QuickSort() {
+        int[] arr1 = Arrays.copyOf(this.arr1, this.arr1.length);
+        int[] arr2 = Arrays.copyOf(this.arr2, this.arr2.length);
 
-    private boolean isSorted(int[] arr) {
-        for (int i=0; i < arr.length-1; ++i) {
-            if(arr[i] > arr[i+1]) return false;
-        }
-        return true;
+        QuickSort.sort(arr1);
+        QuickSort.sort(arr2);
+        System.out.println("Quicksort: " + Arrays.toString(arr1));
+        System.out.println("Quicksort: " + Arrays.toString(arr2));
+
+        assertTrue(isSorted(arr1));
+        assertTrue(isSorted(arr2));
     }
+
+    // #region Helpers
 
     // #endRegion
 }

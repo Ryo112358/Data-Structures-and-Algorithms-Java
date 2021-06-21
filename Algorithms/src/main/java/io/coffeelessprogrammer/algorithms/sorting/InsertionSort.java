@@ -26,36 +26,37 @@ public class InsertionSort implements ShowSteps {
 
     // #region ShowSteps
 
-    public int[] showSteps(int[] arr) {
-        int[] arrCopy = Arrays.copyOf(arr, arr.length);
+    public void showSteps(int[] arr) {
+        sortShowSteps(Arrays.copyOf(arr, arr.length));
+    }
+
+    private void sortShowSteps(int[] arr) {
         
         int currentElement;
 
-        System.out.printf("\nUnsorted Array: %s\n\n", Arrays.toString(arrCopy));
+        System.out.printf("\nUnsorted Array: %s\n\n", Arrays.toString(arr));
 
-        for(int i=1; i < arrCopy.length; ++i) {
-            currentElement = arrCopy[i];
+        for(int i=1; i < arr.length; ++i) {
+            currentElement = arr[i];
 
-            System.out.println("Step " + i + ": " + ColorArray.highlightFocusedElement(arrCopy, i));
+            System.out.println("Step " + i + ": " + ColorArray.highlightElement(arr, i));
 
             for(int j=0; j < i; ++j) {
-                if(currentElement < arrCopy[j]) {
+                if(currentElement < arr[j]) {
 
-                    System.arraycopy(arrCopy, j, arrCopy, j + 1, i - j);
+                    System.arraycopy(arr, j, arr, j + 1, i - j);
 
-                    System.out.println("\tShift: " + highlightShifted(arrCopy, j+1, i));
+                    System.out.println("\tShift: " + highlightShifted(arr, j+1, i));
 
-                    arrCopy[j] = currentElement;
+                    arr[j] = currentElement;
                     break;
                 }
             }
 
-            System.out.println("\tSorted: " + ColorArray.highlightRange(arrCopy, 0, i));
+            System.out.println("\tSorted: " + ColorArray.highlightRange(arr, 0, i));
         }
 
-        System.out.println("\nResult: " + Arrays.toString(arrCopy));
-
-        return arrCopy;
+        System.out.println("\nResult: " + Arrays.toString(arr));
     }
 
     private String highlightShifted(int[] arr, int startIndex, int endIndex) {
