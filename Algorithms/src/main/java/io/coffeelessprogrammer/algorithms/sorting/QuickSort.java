@@ -3,6 +3,7 @@ package io.coffeelessprogrammer.algorithms.sorting;
 import io.coffeelessprogrammer.playground.utils.ColorArray;
 import io.coffeelessprogrammer.playground.utils.ConsoleColor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class QuickSort implements ShowSteps {
@@ -60,29 +61,48 @@ public class QuickSort implements ShowSteps {
 
     // #region ShowSteps
 
+    private int depth;
+    private ArrayList<Integer> levelCounters;
+
+    private final ConsoleColor pivotIndexColor;
+    private final ConsoleColor partitionIndexColor;
+    private final ConsoleColor iterationIndexColor;
+
     private final ConsoleColor[] partitionColors;
     private final ConsoleColor[] swapColors;
     private final ConsoleColor[] partitionColorsFlipped;
 
     public QuickSort() {
-        final ConsoleColor pivotIndexColor = ConsoleColor.RED;
-        final ConsoleColor partitionIndexColor = ConsoleColor.YELLOW;
-        final ConsoleColor iterationIndexColor = ConsoleColor.BLUE;
+        this.depth = 0;
 
-        this.partitionColors = new ConsoleColor[]{ partitionIndexColor, pivotIndexColor };
+        this.pivotIndexColor = ConsoleColor.RED;
+        this.partitionIndexColor = ConsoleColor.YELLOW;
+        this.iterationIndexColor = ConsoleColor.BLUE;
+
         this.swapColors = new ConsoleColor[]{ partitionIndexColor, iterationIndexColor };
+        this.partitionColors = new ConsoleColor[]{ partitionIndexColor, pivotIndexColor };
         this.partitionColorsFlipped = new ConsoleColor[]{ pivotIndexColor, partitionIndexColor };
     }
 
-    public void showSteps(int[] array) {
-        sortShowSteps(array, 0, array.length-1);
+    public void showSteps(int[] arr) {
+        if(arr.length < 2) return;
+
+        // If new array, reset level counters
+        if(depth == 0) {
+            levelCounters = new ArrayList<>();
+        }
+
+        sortShowSteps(arr, 0, arr.length-1);
     }
 
     private void sortShowSteps(int[] array, int leftBound, int rightBound) {
+        if (rightBound < leftBound) return;
 
         System.out.println("Sorting Range (" + leftBound + ", " + rightBound + "): " + ColorArray.highlightRange(array, leftBound, rightBound) + "\n");
 
         final int pivotIndex = rightBound;
+
+        System.out.println("Pivot Value: " + ConsoleColor.RED + array[pivotIndex] + ConsoleColor.RESET + "\n");
 
         if (leftBound < rightBound) {
             final int partitionIndex = partitionShowSteps(array, pivotIndex, leftBound, rightBound);
@@ -142,7 +162,7 @@ public class QuickSort implements ShowSteps {
 
     // #region ShowStepsHelpers
 
-    private int[][] generateRanges(int... singleIndices) {
+    private int[][] generateRangesFrom(int... singleIndices) {
         final int[][] ranges = new int[singleIndices.length][2];
 
         for(int i=0; i < singleIndices.length; ++i) {

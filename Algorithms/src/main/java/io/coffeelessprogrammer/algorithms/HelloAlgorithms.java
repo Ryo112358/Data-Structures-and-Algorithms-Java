@@ -20,7 +20,8 @@ public class HelloAlgorithms {
 //        displaySortSteps(arr1, SortName.INSERTION_SORT);
 //        displaySortSteps(arrRand1, SortName.MERGE_SORT);
 //        displaySortSteps(arrRand2, SortName.MERGE_SORT);
-        displaySortSteps(arr1, SortName.QUICKSORT);
+//        displaySortSteps(arr1, SortName.QUICKSORT);
+//        displaySortSteps(arr1, null);
     }
 
     private static void displaySortSteps(int[] arrToSort, SortName sortName) {
@@ -31,8 +32,7 @@ public class HelloAlgorithms {
         switch (sortName) {
             case INSERTION_SORT -> sort = new InsertionSort();
             case MERGE_SORT -> sort = new MergeSort();
-            case QUICKSORT -> sort = new QuickSort();
-            default -> sort = null;
+            default -> sort = new QuickSort();
         }
 
         sort.showSteps(arrToSort);
