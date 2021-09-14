@@ -30,9 +30,14 @@ public class HelloAlgorithms {
         ShowSteps sort;
 
         switch (sortName) {
-            case INSERTION_SORT -> sort = new InsertionSort();
-            case MERGE_SORT -> sort = new MergeSort();
-            default -> sort = new QuickSort();
+            case INSERTION_SORT:
+                sort = new InsertionSort();
+                break;
+            case MERGE_SORT:
+                sort = new MergeSort();
+                break;
+            default:
+                sort = new QuickSort();
         }
 
         sort.showSteps(arrToSort);

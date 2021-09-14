@@ -1,10 +1,10 @@
 # Data Structures & Algorithms in Java
 
 ## Environment
-- <span title="Release: Apr 2021">IntelliJ IDEA v2021.1</span>
-- <span title="Release: Mar 2021">OpenJDK v16+36</span>
-- <span title="Release: Feb 2021">Gradle v6.8.2</span>
-  - <span title="Release: Jan 2021">Gradle JVM v15.0.2</span>
+- <span title="Release: Sep 2021">IntelliJ IDEA v2021.2.2</span>
+- <span title="Release: Jul 2021">OpenJDK v11.0.12+7</span>
+- <span title="Release: Jun 2021">Gradle v7.1</span>
+  - <span title="Release: Jul 2021">Gradle JVM v11.0.12</span>
 
 ## Topics Overview
 
