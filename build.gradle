@@ -2,46 +2,34 @@ plugins {
     id("java")
 }
 
-group = "dev.coffeelessprogrammer"
-version = "0.1"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation project(":Playground")
-
-    compileOnly("org.projectlombok:lombok:${lombokVersion}")
-    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-
-    // ----- Testing -----
-
-    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
-    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-}
-
-test {
-    useJUnitPlatform()
-}
-
 wrapper {
     gradleVersion = "7.4.2"
 }
 
+group = "dev.coffeelessprogrammer.dsalgo"
+version = "0.1"
+
+dependencies {
+    implementation project(":Utility")
+}
+
 subprojects {
     apply plugin: "java-library"
+}
 
+allprojects {
     repositories {
         mavenCentral()
     }
 
     dependencies {
+        compileOnly("org.projectlombok:lombok:${lombokVersion}")
+        annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 
         // ----- Testing -----
 
+        testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+        testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     }
