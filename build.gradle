@@ -6,9 +6,6 @@ wrapper {
     gradleVersion = "7.4.2"
 }
 
-group = "dev.coffeelessprogrammer.dsalgo"
-version = "0.1"
-
 dependencies {
     implementation project(":Utility")
 }
@@ -18,6 +15,10 @@ subprojects {
 }
 
 allprojects {
+    group = "dev.coffeelessprogrammer.dsalgo"
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
+
     repositories {
         mavenCentral()
     }
@@ -28,9 +29,9 @@ allprojects {
 
         // ----- Testing -----
 
-        testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
-        testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+//        testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+//        testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+        testCompileOnly("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     }
 

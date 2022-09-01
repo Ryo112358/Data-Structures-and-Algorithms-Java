@@ -8,19 +8,56 @@ import java.util.Arrays;
 
 public class InsertionSort implements ShowSteps {
 
-    public static void sort(int[] elements) {
-        int currentElement;
+    public static void sort(int[] arr) {
+        int current, j;
 
-        for(int i=1; i < elements.length; ++i) {
-            currentElement = elements[i];
+        for(int i=1; i < arr.length; ++i) {
+            current = arr[i];
 
-            for(int j=0; j < i; ++j) {
-                if(currentElement < elements[j]) {
-                    System.arraycopy(elements, j, elements, j + 1, i - j);
-                    elements[j] = currentElement;
-                    break;
-                }
-            }
+            for (j = i - 1; j >= 0 && current < arr[j]; --j)
+                arr[j + 1] = arr[j];
+
+            arr[j + 1] = current;
+        }
+    }
+
+    public static void insertionSortCoffeeless(int[] arr) {
+        int current, j;
+
+        for(int i=1; i < arr.length; ++i) {
+            current = arr[i];
+
+            j = findInsertPosition(arr, 0, i-1, current);
+
+            System.arraycopy(arr, j, arr, j + 1, i - j);
+            arr[j] = current;
+        }
+    }
+
+    private static int findInsertPosition(int[] nums, int lB, int rB, int target) {
+        int mid=(lB+rB)/2;
+
+        while(lB<=rB) {
+            mid=(lB+rB)/2;
+
+            if(target < nums[mid]) rB=mid-1;
+            else lB = mid+1;
+        }
+
+        return target < nums[mid] ? mid : mid+1;
+    }
+
+    public static void sort(long[] arr) {
+        int j;
+        long current;
+
+        for(int i=1; i < arr.length; ++i) {
+            current = arr[i];
+
+            for (j = i - 1; j >= 0 && current < arr[j]; --j)
+                arr[j + 1] = arr[j];
+
+            arr[j + 1] = current;
         }
     }
 

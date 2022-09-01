@@ -12,7 +12,7 @@ public class KnapsackTests {
     @Test
     @Disabled
     final void Knapsack_Capacity10() {
-        assertEquals(16, Knapsack.fillKnapsack(10));
+        assertEquals(16, Knapsack.fill(10));
     }
 
     @Test

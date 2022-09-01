@@ -12,7 +12,7 @@ public class Knapsack {
      * Return the highest value knapsack based on the current inventory
      * @param startingCapacity Initial capacity of Knapsack
      */
-    public static int fillKnapsack(int startingCapacity) {
+    public static int fill(int startingCapacity) {
         initializeMemo(startingCapacity);
         return fillKnapsack(weight.length-1, startingCapacity);
     }
